@@ -15,7 +15,9 @@ Reproducible homelab setup
 
 - Initial IaC run should be done from node within the proxmox network, this is a one time setup.
 
-- Fill in credentials.pkr.hcl based on example credentials.pkr.hcl.example file
+- Fill in `credentials.pkr.hcl` based on example `credentials.pkr.hcl.example` file
+
+- Update`passwd` field in  `http/user-data` to follow password set in `credentials.pkr.hcl`. This password should be hashed using the SHA-512 algorithm.
 
 - Run:
 
