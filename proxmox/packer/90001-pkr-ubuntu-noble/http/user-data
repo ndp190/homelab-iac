@@ -17,6 +17,12 @@ autoinstall:
       name: direct
     swap:
       size: 0
+  network:
+    network:
+      version: 2
+      ethernets:
+        ens18:
+          dhcp4: yes
   user-data:
     package_upgrade: true
     timezone: Europe/Berlin
@@ -27,7 +33,7 @@ autoinstall:
         lock-passwd: false
         sudo: ALL=(ALL) NOPASSWD:ALL
         shell: /bin/bash
-        passwd: $6$230i923r23ik0fk2$PaSk5DInBxW8gB0NP5OhQl7ZEzu0Wwi6JSTgUyf5F9XChpY4KMZ/WX2nNFKwK.BqpRejhrY8iyPYY8Gg0HSDV/
+        passwd: $6$OKHxWZn7O5MHX1CW$iZ15EXBnfUI2O/7N6KevO3jj4.wqmC1pShelIW/VyYhfeA1Iv2K2VHQ5zeodPy2.H5wWNc0hBebSet1HxeaW00
   packages:
     - qemu-guest-agent
     - sudo
