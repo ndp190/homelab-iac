@@ -1,0 +1,4 @@
+opnsense_password = "your_desired_password"
+SV3_URL = "<url>/api2/json"
+SV3_TOKEN_ID = ""
+SV3_TOKEN_SECRET = ""

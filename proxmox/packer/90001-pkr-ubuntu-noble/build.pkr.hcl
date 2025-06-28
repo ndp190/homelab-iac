@@ -57,7 +57,7 @@ source "proxmox-iso" "pkr-ubuntu-noble" {
   boot_wait                 = "6s"
   communicator              = "ssh"
 
-  http_directory            = "90001-pkr-ubuntu-noble/http"
+  http_directory            = "../90001-pkr-ubuntu-noble/http"
 
   ssh_username              = "${var.ssh_username}"
   ssh_password              = "${var.ssh_password}"
@@ -93,7 +93,7 @@ build {
 
   # Provisioning the VM Template for Cloud-Init Integration in Proxmox #2
   provisioner "file" {
-    source      = "90001-pkr-ubuntu-noble/files/99-pve.cfg"
+    source      = "../90001-pkr-ubuntu-noble/files/99-pve.cfg"
     destination = "/tmp/99-pve.cfg"
   }
   provisioner "shell" {

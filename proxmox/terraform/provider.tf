@@ -25,5 +25,5 @@ provider "proxmox" {
   pm_api_url          = var.SV3_URL
   pm_api_token_id     = var.SV3_TOKEN_ID
   pm_api_token_secret = var.SV3_TOKEN_SECRET
-  pm_tls_insecure     = false
+  pm_tls_insecure     = true
 }
