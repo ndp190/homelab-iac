@@ -31,7 +31,7 @@ After building the Proxmox image template with Packer, you can run Terraform to 
 5. From the project root, initialize and apply Terraform:
 
 ```bash
-cd proxmox/terraform
+cd proxmox/terraform-init
 terraform init
 terraform plan
 terraform apply
@@ -73,8 +73,9 @@ terraform apply
         - Go to Interfaces > Assignments and add a new interface for Tailscale (the option should already be there)
         - [Optional] Rename the interface from `OPT1` to `TAILSCALE` for clarity
     - Go back to proxmox opnsense VM and enter Shell
-    - `tailscale up --advertise-routes=192.168.33.0/24` to advertise the LAN network over Tailscale
+    - `tailscale up --advertise-routes=192.168.33.0/24,<proxmox-ip>/32` to advertise the LAN network over Tailscale, and to advertise the Proxmox host IP over Tailscale (for direct access to the Proxmox web interface & terraform remote run)
     - Go to tailscale.com and approve the advertised routes
+8. Setup github runner - follow the [GitHub Actions Runner documentation](https://docs.github.com/en/actions/hosting-your-own-runners/adding-self-hosted-runners) to add the runner to your GitHub repository
 
 ## Skipping or Marking the Packer Build as Done
 
