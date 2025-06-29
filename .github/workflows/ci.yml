@@ -17,6 +17,11 @@ jobs:
 
       - uses: opentofu/setup-opentofu@v1
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+
       - name: Set Terraform Variables
         run: |
           echo "TF_VAR_SV3_URL=${{ vars.SV3_URL }}" >> $GITHUB_ENV
@@ -47,6 +52,11 @@ jobs:
           tar -xzf tofu.tar.gz tofu
           sudo mv tofu /usr/local/bin/tofu
           tofu version
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
 
       - name: Set Terraform Variables
         run: |
