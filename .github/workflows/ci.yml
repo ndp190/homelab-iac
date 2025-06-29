@@ -3,9 +3,6 @@ name: "Terraform CKA Lab VMs"
 on:
   push:
     branches: ["*"]
-    paths:
-      - 'proxmox/terraform/**'
-      - '.github/workflows/terraform-cka-lab.yml'
   workflow_dispatch:
 
 jobs:
