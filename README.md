@@ -4,7 +4,7 @@ Reproducible homelab setup
 
 ## TODO
 
-- [ ] add github actions
+- [x] add github actions
 
 ## Prerequisites
 
