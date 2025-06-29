@@ -49,12 +49,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install OpenTofu
-        run: |
-          curl -sSLo tofu.tar.gz https://github.com/opentofu/opentofu/releases/latest/download/tofu_Linux_x86_64.tar.gz
-          tar -xzf tofu.tar.gz tofu
-          sudo mv tofu /usr/local/bin/tofu
-          tofu version
+      - uses: opentofu/setup-opentofu@v1
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
