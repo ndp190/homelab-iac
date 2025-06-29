@@ -22,7 +22,7 @@ resource "proxmox_vm_qemu" "opnsense" {
     storage  = "local-lvm"
     format   = "qcow2"
     discard  = "on"
-    iothread = true
+    iothread = 1
   }
   network {
     model    = "virtio"
@@ -35,5 +35,13 @@ resource "proxmox_vm_qemu" "opnsense" {
     tag      = 33
     # net1: WAN (VLAN 33)
   }
+
+  lifecycle {
+    ignore_changes = [
+      disk,
+      vm_state
+    ]
+  }
+
   depends_on = [null_resource.build_ubuntu_noble_template]
 }
