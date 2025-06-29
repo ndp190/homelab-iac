@@ -34,8 +34,6 @@ resource "proxmox_vm_qemu" "cka_node1" {
   nameserver = "192.168.33.1"
   ciuser = "nikk"
   sshkeys = var.PUBLIC_SSH_KEY
-
-  depends_on = [null_resource.build_ubuntu_noble_template]
 }
 
 resource "proxmox_vm_qemu" "cka_node2" {
