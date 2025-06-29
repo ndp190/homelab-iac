@@ -18,13 +18,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install OpenTofu
-        run: |
-          curl -sSLo tofu.tar.gz https://github.com/opentofu/opentofu/releases/latest/download/tofu_Linux_x86_64.tar.gz
-          tar -xzf tofu.tar.gz tofu
-          sudo mv tofu /usr/local/bin/tofu
-          tofu version
-
       - name: Set Terraform Variables
         run: |
           echo "TF_VAR_SV3_URL=${{ vars.SV3_URL }}" >> $GITHUB_ENV
