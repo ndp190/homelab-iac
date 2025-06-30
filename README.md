@@ -2,10 +2,6 @@
 
 Reproducible homelab setup
 
-## TODO
-
-- [ ] add github actions
-
 ## Prerequisites
 
 - Already setup proxmox node
