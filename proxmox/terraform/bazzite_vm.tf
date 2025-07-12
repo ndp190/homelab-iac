@@ -29,14 +29,6 @@ resource "proxmox_vm_qemu" "bazzite" {
     iothread = 1
   }
 
-  # Installation ISO
-  disk {
-    type    = "ide"
-    storage = "local"
-    file    = "iso/bazzite-nvidia-stable-amd64.iso"
-    media   = "cdrom"
-    size    = "8G"
-  }
 
   # VGA, should set to "none" when GPU passthrough is used
   vga {
