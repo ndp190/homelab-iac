@@ -2,7 +2,7 @@ resource "proxmox_vm_qemu" "cka_node1" {
   name        = "cka-node1"
   desc        = "CKA Lab Node 1"
   agent       = 1
-  vmid        = 1001
+  vmid        = 201
   target_node = "pve"
   bios        = "seabios"
   clone       = "pkr-ubuntu-noble"
@@ -40,7 +40,7 @@ resource "proxmox_vm_qemu" "cka_node2" {
   name        = "cka-node2"
   desc        = "CKA Lab Node 2"
   agent       = 1
-  vmid        = 1002
+  vmid        = 202
   target_node = "pve"
   bios        = "seabios"
   clone       = "pkr-ubuntu-noble"

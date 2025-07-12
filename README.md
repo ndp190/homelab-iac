@@ -29,7 +29,6 @@ Reproducible homelab setup
 | 192.168.33.103   | bazzite       |
 | 192.168.33.201   | cka-node1     |
 | 192.168.33.202   | cka-node2     |
-| 192.168.33.202   | cka-node2     |
 
 ## Initial Run
 

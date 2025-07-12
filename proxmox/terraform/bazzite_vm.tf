@@ -2,7 +2,7 @@ resource "proxmox_vm_qemu" "bazzite" {
   name        = "bazzite"
   desc        = "Gaming VM with NVIDIA GPU Passthrough"
   agent       = 1
-  vmid        = 201
+  vmid        = 103
   target_node = "pve"
   bios        = "ovmf"
   machine     = "q35"
