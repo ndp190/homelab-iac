@@ -13,7 +13,6 @@ resource "proxmox_vm_qemu" "github_runner" {
   scsihw      = "virtio-scsi-pci"
 
   onboot      = true # Start VM on boot
-
   define_connection_info = false
 
   network {
@@ -30,7 +29,7 @@ resource "proxmox_vm_qemu" "github_runner" {
   }
 
   # Cloud Init Settings 
-  ipconfig0 = "ip=192.168.33.10/24,gw=192.168.33.1"
+  ipconfig0 = "ip=192.168.33.101/24,gw=192.168.33.1"
   nameserver = "192.168.33.1"
   ciuser = "nikk"
   sshkeys = var.PUBLIC_SSH_KEY
