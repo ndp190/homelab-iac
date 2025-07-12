@@ -19,14 +19,6 @@ resource "proxmox_vm_qemu" "compute" {
     tag    = 33
   }
 
-  disk {
-    type     = "scsi"
-    storage  = "hdd-vmstore"
-    size     = "128G"
-    iothread = 1
-    slot     = 1 # Ensures this disk is attached as scsi1 (predictable device in guest, e.g., /dev/sdb)
-  }
-
   lifecycle {
     ignore_changes = [
       disk,
