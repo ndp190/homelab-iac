@@ -11,7 +11,6 @@ resource "proxmox_vm_qemu" "bazzite" {
   cores       = 4
   sockets     = 1
   onboot      = true
-  ipconfig0   = "ip=192.168.33.103/24,gw=192.168.33.1"
   iso         = "local:iso/bazzite-nvidia-stable-amd64.iso"
 
   # Main Disk
