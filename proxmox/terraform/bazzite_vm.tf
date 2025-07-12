@@ -11,6 +11,7 @@ resource "proxmox_vm_qemu" "bazzite" {
   cores       = 4
   sockets     = 1
   onboot      = true
+  ipconfig0   = "ip=192.168.33.103/24,gw=192.168.33.1"
 
   # Main Disk
   disk {
@@ -44,9 +45,9 @@ resource "proxmox_vm_qemu" "bazzite" {
 
   # Network Device
   network {
-    model   = "virtio"
-    bridge  = "vmbr0"
-    tag     = 33
+    model     = "virtio"
+    bridge    = "vmbr0"
+    tag       = 33
   }
 
   # PCI Passthrough
