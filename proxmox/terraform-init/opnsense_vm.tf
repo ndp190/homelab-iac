@@ -13,13 +13,13 @@ resource "proxmox_vm_qemu" "opnsense" {
   memory      = 2048
   sockets     = 1
   scsihw      = "virtio-scsi-single"
-  boot        = "order=ide2;scsi0"
+  boot        = "order=scsi0;ide2"
   onboot      = true
 
   disk {
     size     = "20G"
     type     = "scsi"
-    storage  = "local-lvm"
+    storage  = "hdd-vmstore"
     format   = "qcow2"
     discard  = "on"
     iothread = 1

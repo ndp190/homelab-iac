@@ -14,6 +14,14 @@ Reproducible homelab setup
     - Upload it to proxmox `local (pve)` storage
     - Rename to `OPNsense-25.1-dvd-amd64.iso`
 
+## Reserved IP Addresses
+
+| IP Address       | Machine/VM    |
+|------------------|---------------|
+| 192.168.33.101   | github-runner |
+| 192.168.33.201   | cka-node1     |
+| 192.168.33.202   | cka-node2     |
+
 ## Initial Run
 
 After building the Proxmox image template with Packer, you can run Terraform to provision your infrastructure. On the initial run, Terraform will automatically trigger Packer to build the `90001-pkr-ubuntu-noble` template if it does not exist, using a `null_resource` with a `local-exec` provisioner.
@@ -62,6 +70,7 @@ terraform apply
     - `opnsense-code ports` to update the ports tree
     - `cd /usr/ports/security/tailscale`
     - `make install` to install tailscale
+    - if make failed run this `pkg update -f && pkg install perl5 gmake autoconf automake libtool`
     - `service tailscaled enable` to enable the tailscale service
     - `service tailscaled start` to start the tailscale daemon
     - `tailscale up` to authenticate and connect to your tailscale network
