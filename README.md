@@ -5,6 +5,12 @@ Reproducible homelab setup
 ## Prerequisites
 
 - Already setup proxmox node
+    - Host hardware (for preference): **Lenovo ThinkStation P510**
+        - CPU: 28 x Intel(R) Xeon(R) CPU E5-2680 v4 @ 2.40GHz (1 Socket)
+        - RAM: 32 GiB
+        - Storage:
+            - local + local-lvm: 256GB SSD
+            - hdd-vmstore: 1TB HDD
     - Has one node named `pve` (default setting)
     - Generate API token for terraform IaC (no privilege separation)
 - Download LTS version 24.04 [ubuntu image](https://cloud-images.ubuntu.com/)
@@ -19,6 +25,7 @@ Reproducible homelab setup
 | IP Address       | Machine/VM    |
 |------------------|---------------|
 | 192.168.33.101   | github-runner |
+| 192.168.33.102   | compute       |
 | 192.168.33.201   | cka-node1     |
 | 192.168.33.202   | cka-node2     |
 
