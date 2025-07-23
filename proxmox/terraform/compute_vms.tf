@@ -34,5 +34,6 @@ resource "proxmox_vm_qemu" "compute" {
 
   # To install Docker and ffmpeg on first boot, upload a custom compute_vm_data file to your Proxmox node (e.g., scp ./compute_vm_data.yaml root@<PROXMOX_HOST>:/mnt/hdd-vmstore/snippets/compute_vm_data.yaml)
   # Then add the following attribute to this resource:
-  cicustom = "user=hdd-vmstore:snippets/compute_vm_data.yaml"
+  # cicustom = "user=hdd-vmstore:snippets/compute_vm_data.yaml"
+  # this override ssh keys and user data, hence commenting it out
 }
