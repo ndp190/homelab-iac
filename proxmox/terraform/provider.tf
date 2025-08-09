@@ -6,6 +6,14 @@ terraform {
       version = ">= 0.0.1"
     }
   }
+  backend "s3" {
+    bucket                      = "homelab-tfstate"
+    key                         = "proxmox01/terraform.tfstate"
+    endpoint                    = "https://eec01328bb19274e2e1ce370196d47b5.r2.cloudflarestorage.com/homelab-tfstate"
+    region                      = "auto"
+    skip_credentials_validation = true
+    skip_region_validation      = true
+  }
 }
 
 # All variables are stored in 1Password, look for "proxmox01/sv3.nikk" note and ssh keys

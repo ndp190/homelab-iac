@@ -1,0 +1,49 @@
+name: "Proxmox Terraform Import"
+
+on:
+  workflow_dispatch:
+    inputs:
+      resource_address:
+        description: 'Terraform resource address (e.g., proxmox_vm_qemu.cka_master)'
+        required: true
+        type: string
+      resource_id:
+        description: 'Proxmox resource ID (e.g., pve/qemu/101)'
+        required: true
+        type: string
+
+jobs:
+  import:
+    runs-on: self-hosted
+    defaults:
+      run:
+        working-directory: proxmox/terraform
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - uses: opentofu/setup-opentofu@v1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+
+      - name: Set Terraform Variables
+        run: |
+          echo "TF_VAR_SV3_URL=${{ vars.SV3_URL }}" >> $GITHUB_ENV
+          echo "TF_VAR_SV3_TOKEN_ID=${{ vars.SV3_TOKEN_ID }}" >> $GITHUB_ENV
+          echo "TF_VAR_SV3_TOKEN_SECRET=${{ secrets.SV3_TOKEN_SECRET }}" >> $GITHUB_ENV
+          echo "TF_VAR_PUBLIC_SSH_KEY=${{ secrets.PUBLIC_SSH_KEY }}" >> $GITHUB_ENV
+
+      - name: Tofu Init
+        run: tofu init
+
+      - name: Import Resource
+        run: tofu import ${{ github.event.inputs.resource_address }} ${{ github.event.inputs.resource_id }}
+        
+      - name: Show State
+        run: tofu state list
