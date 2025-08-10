@@ -102,6 +102,42 @@ terraform import null_resource.build_ubuntu_noble_template $(uuidgen)
 
 > **Note:** If you want to force the Packer build to run again, use `terraform taint null_resource.build_ubuntu_noble_template` and then `terraform apply`.
 
+## Importing Existing Proxmox Resources to Terraform State
+
+If you have resources that were created outside of Terraform (manually or through other means), you can use the "Proxmox Terraform Import" GitHub workflow to import them into your Terraform state. This prevents Terraform from trying to create resources that already exist.
+
+### When to Use
+
+- When Terraform is trying to create resources that already exist in Proxmox
+- When you've created VMs or other resources manually and want to manage them with Terraform
+- After restoring from backups or migrating resources
+
+### How to Use
+
+1. Go to the "Actions" tab in your GitHub repository
+2. Select the "Proxmox Terraform Import" workflow
+3. Click "Run workflow"
+4. Fill in the required parameters:
+   - **Resource Address**: The Terraform resource address (e.g., `proxmox_vm_qemu.cka_master`)
+   - **Proxmox Resource ID**: The ID of the resource in Proxmox (e.g., `pve/qemu/101`)
+5. Click "Run workflow" to execute the import operation
+
+### Common Resource Types to Import
+
+- **Virtual Machines**: `proxmox_vm_qemu.vm_name` with ID `pve/qemu/101` (where 101 is the VM ID)
+- **LXC Containers**: `proxmox_lxc.container_name` with ID `pve/lxc/102` (where 102 is the container ID)
+- **Storage**: `proxmox_storage_dir.storage_name` with ID `pve/storage/storage_name`
+
+### Example
+
+To import an existing VM with ID 103 into a Terraform resource named `proxmox_vm_qemu.github_runner`:
+
+1. Run the "Proxmox Terraform Import" workflow
+2. Set Resource Address to `proxmox_vm_qemu.github_runner`
+3. Set Proxmox Resource ID to `pve/qemu/103`
+
+After importing, Terraform will recognize the resource as existing and won't try to create it again.
+
 ## Packer: Manual Build & Debugging
 
 While it is recommended to let Terraform trigger the Packer build automatically (see the section above), you can also run Packer manually for debugging or development purposes.
