@@ -23,9 +23,11 @@ resource "proxmox_vm_qemu" "cka_node1" {
   }
 
   lifecycle {
+    prevent_destroy = true
     ignore_changes = [
       disk,
-      vm_state
+      vm_state,
+      full_clone,
     ]
   }
 
@@ -61,9 +63,11 @@ resource "proxmox_vm_qemu" "cka_node2" {
   }
 
   lifecycle {
+    prevent_destroy = true
     ignore_changes = [
       disk,
-      vm_state
+      vm_state,
+      full_clone,
     ]
   }
 

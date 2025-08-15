@@ -46,9 +46,11 @@ resource "proxmox_vm_qemu" "bazzite" {
   # PCI passthrough and display settings omitted due to provider limitations
 
   lifecycle {
+    prevent_destroy = true
     ignore_changes = [
       disk,
-      vm_state
+      vm_state,
+      full_clone,
     ]
   }
 }
