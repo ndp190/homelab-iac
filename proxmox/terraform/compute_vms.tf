@@ -12,7 +12,7 @@ resource "proxmox_vm_qemu" "compute" {
   sockets     = 1
   scsihw      = "virtio-scsi-pci"
   onboot      = true
-  iso         = "local:iso/ubuntu-24.04.2-desktop-amd64.iso"
+  iso         = "local:iso/archlinux-2025.08.01-x86_64.iso"
   boot        = "order=scsi0;ide2"
 
   # Main Disk
