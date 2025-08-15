@@ -48,9 +48,13 @@ resource "proxmox_vm_qemu" "bazzite" {
   lifecycle {
     prevent_destroy = true
     ignore_changes = [
-      disk,
-      vm_state,
       full_clone,
+      iso,
+      boot,
+      define_connection_info,
+      numa,
+      qemu_os,
+      unused_disk,
     ]
   }
 }
