@@ -52,9 +52,9 @@ resource "proxmox_vm_qemu" "bazzite" {
       iso,
       boot,
       define_connection_info,
-      numa,
       qemu_os,
       unused_disk,
+      vmid,
     ]
   }
 }
