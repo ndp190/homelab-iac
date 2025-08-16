@@ -12,7 +12,7 @@ resource "proxmox_vm_qemu" "cka_node1" {
   sockets     = 1
   scsihw      = "virtio-scsi-pci"
 
-  onboot      = true
+  onboot = true
 
   define_connection_info = false
 
@@ -23,17 +23,21 @@ resource "proxmox_vm_qemu" "cka_node1" {
   }
 
   lifecycle {
+    prevent_destroy = true
     ignore_changes = [
+      clone,
+      full_clone,
+      vmid,
       disk,
-      vm_state
+      vm_state,
     ]
   }
 
   # Cloud Init Settings
-  ipconfig0 = "ip=192.168.33.201/24,gw=192.168.33.1"
+  ipconfig0  = "ip=192.168.33.201/24,gw=192.168.33.1"
   nameserver = "192.168.33.1"
-  ciuser = "nikk"
-  sshkeys = var.PUBLIC_SSH_KEY
+  ciuser     = "nikk"
+  sshkeys    = var.PUBLIC_SSH_KEY
 }
 
 resource "proxmox_vm_qemu" "cka_node2" {
@@ -50,7 +54,7 @@ resource "proxmox_vm_qemu" "cka_node2" {
   sockets     = 1
   scsihw      = "virtio-scsi-pci"
 
-  onboot      = true
+  onboot = true
 
   define_connection_info = false
 
@@ -61,15 +65,19 @@ resource "proxmox_vm_qemu" "cka_node2" {
   }
 
   lifecycle {
+    prevent_destroy = true
     ignore_changes = [
+      clone,
+      full_clone,
+      vmid,
       disk,
-      vm_state
+      vm_state,
     ]
   }
 
   # Cloud Init Settings
-  ipconfig0 = "ip=192.168.33.202/24,gw=192.168.33.1"
+  ipconfig0  = "ip=192.168.33.202/24,gw=192.168.33.1"
   nameserver = "192.168.33.1"
-  ciuser = "nikk"
-  sshkeys = var.PUBLIC_SSH_KEY
+  ciuser     = "nikk"
+  sshkeys    = var.PUBLIC_SSH_KEY
 }
