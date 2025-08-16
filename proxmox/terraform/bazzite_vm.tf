@@ -50,11 +50,12 @@ resource "proxmox_vm_qemu" "bazzite" {
     ignore_changes = [
       full_clone,
       iso,
-      boot,
-      define_connection_info,
-      qemu_os,
-      unused_disk,
       vmid,
+      # boot,
+      # define_connection_info,
+      # qemu_os,
+      disk,
+      vga,
     ]
   }
 }
