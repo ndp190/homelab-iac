@@ -39,7 +39,10 @@ jobs:
         run: tofu init
 
       - name: Tofu Plan
-        run: tofu plan
+        run: tofu plan -detailed-exitcode
+        timeout-minutes: 5
+        env:
+          TF_LOG: DEBUG
 
   apply:
     runs-on: self-hosted
