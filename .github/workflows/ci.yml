@@ -35,16 +35,12 @@ jobs:
           echo "TF_VAR_SV3_TOKEN_SECRET=${{ secrets.SV3_TOKEN_SECRET }}" >> $GITHUB_ENV
           echo "TF_VAR_PUBLIC_SSH_KEY=${{ secrets.PUBLIC_SSH_KEY }}" >> $GITHUB_ENV
 
-      - name: Check Proxmox connectivity
-        run: |
-          curl -k -s -o /dev/null -w "%{http_code}" $TF_VAR_SV3_URL || echo "Cannot connect to Proxmox"
-
       - name: Tofu Init
         run: tofu init
 
       - name: Tofu Plan
-        run: tofu plan -detailed-exitcode
-        timeout-minutes: 5
+        run: tofu plan -detailed-exitcode -parallelism=2
+        timeout-minutes: 10
         env:
           TF_LOG: TRACE
 
