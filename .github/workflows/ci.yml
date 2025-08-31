@@ -38,6 +38,10 @@ jobs:
       - name: Tofu Init
         run: tofu init
 
+      - name: Refresh state before plan
+        run: tofu refresh
+        timeout-minutes: 5
+
       - name: Tofu Plan
         run: tofu plan -detailed-exitcode -parallelism=2
         timeout-minutes: 10
