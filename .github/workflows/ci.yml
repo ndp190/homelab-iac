@@ -38,12 +38,6 @@ jobs:
       - name: Tofu Init
         run: tofu init
 
-      - name: Setup tmate session for debugging
-        uses: mxschmitt/action-tmate@v3
-        with:
-          limit-access-to-actor: true
-          install-dependencies: false
-
       - name: Check state after import
         run: tofu state list
         timeout-minutes: 5
