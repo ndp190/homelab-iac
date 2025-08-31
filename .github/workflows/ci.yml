@@ -38,19 +38,28 @@ jobs:
       - name: Tofu Init
         run: tofu init
 
-      - name: Check state after import
-        run: tofu state list
+      - name: Examine the imported resource
+        run: |
+          tofu state show proxmox_vm_qemu.compute
         timeout-minutes: 5
 
-      - name: Refresh state before plan
-        run: tofu refresh
+      - name: Debug specific resource
+        run: |
+          TF_LOG=TRACE tofu state pull > state.json
+          # Look at just the last few lines to see if there's any error info
+          tail -n 200 state.json
         timeout-minutes: 5
 
-      - name: Tofu Plan
-        run: tofu plan -detailed-exitcode -parallelism=2
-        timeout-minutes: 10
-        env:
-          TF_LOG: TRACE
+      - name: Targeted refresh
+        run: |
+          TF_LOG=TRACE tofu refresh -target=proxmox_vm_qemu.compute
+        timeout-minutes: 5
+
+      # - name: Tofu Plan
+      #   run: tofu plan -detailed-exitcode -parallelism=2
+      #   timeout-minutes: 10
+      #   env:
+      #     TF_LOG: TRACE
 
   apply:
     runs-on: self-hosted
